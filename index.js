@@ -112,15 +112,15 @@ app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, '/pages/home.html'));
 });
 
+app.get('/dashboard', (req, res) => {
+  res.sendFile(path.join(__dirname, '/pages/dashboard.html'));
+});
+
 app.get('/about/contact', (req, res) => {
   res.sendFile(path.join(__dirname, '/pages/about.html'));
 });
 app.get('/about/profile', (req, res) => {
   res.sendFile(path.join(__dirname, '/pages/about.html'));
-});
-
-app.get('/dashboard', (req, res) => {
-  res.sendFile(path.join(__dirname, '/pages/dashboard.html'));
 });
 
 app.get('/api/ai', (req, res) => {
