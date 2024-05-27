@@ -285,9 +285,9 @@ app.use((req, res, next) => {
   res.status(404).send("Sorry can't find that!");
 });
 
-app.use(((req, res, next) => {
+/*app.use(((req, res, next) => {
   res.status.sendFile(path.join(__dirname, '/pages/home.html'));
-});
+});*/
 
 app.use((err, req, res, next) => {
   console.error(err.stack);
