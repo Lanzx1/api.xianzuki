@@ -2,6 +2,7 @@ const express = require('express');
 const cors = require('cors');
 const path = require('path');
 const axios = require('axios');
+const cheerio = require('cheerio')
 const app = express();
 const PORT = process.env.PORT || 3000;
 app.enable("trust proxy");
@@ -78,7 +79,7 @@ async function blackboxAIChat(message) {
   }
 }
 
-async function GPT(message) {
+async function GPT(text) {
   return new Promise(async (resolve, reject) => {
     axios("https://www.chatgptdownload.org/wp-json/mwai-ui/v1/chats/submit", {
       "headers": {
@@ -108,14 +109,72 @@ async function GPT(message) {
   });
 };
 
+async function igdl(url) {
+  return new Promise(async (resolve, reject) => {
+    const payload = new URLSearchParams(
+      Object.entries({
+        url: url,
+        host: "instagram"
+      })
+    )
+    await axios.request({
+      method: "POST",
+      baseURL: "https://saveinsta.io/core/ajax.php",
+      data: payload,
+      headers: {
+        "content-type": "application/x-www-form-urlencoded; charset=UTF-8",
+        cookie: "PHPSESSID=rmer1p00mtkqv64ai0pa429d4o",
+        "user-agent": "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/116.0.0.0 Mobile Safari/537.36"
+      }
+    })
+    .then(( response ) => {      
+      const $ = cheerio.load(response.data)
+      const mediaURL = $("div.row > div.col-md-12 > div.row.story-container.mt-4.pb-4.border-bottom").map((_, el) => {
+        return "https://saveinsta.io/" + $(el).find("div.col-md-8.mx-auto > a").attr("href")
+      }).get()
+      const res = {
+        status: 200,
+        media: mediaURL
+      }
+      resolve(res)
+    })
+    .catch((e) => {
+      console.log(e)
+      throw {
+        status: 400,
+        message: "error",
+      }
+    })
+  })
+}
+
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, '/pages/home.html'));
+});
+
+app.get('/about/contact', (req, res) => {
+  res.sendFile(path.join(__dirname, '/pages/about.html'));
+});
+app.get('/about/profile', (req, res) => {
+  res.sendFile(path.join(__dirname, '/pages/about.html'));
 });
 
 app.get('/dashboard', (req, res) => {
   res.sendFile(path.join(__dirname, '/pages/dashboard.html'));
 });
 
+app.get('/api/ai', (req, res) => {
+  res.sendFile(path.join(__dirname, '/pages/docs/ai.html'));
+});
+
+app.get('/api/download', (req, res) => {
+  res.sendFile(path.join(__dirname, '/pages/docs/download.html'));
+});
+
+app.get('/api/tools', (req, res) => {
+  res.sendFile(path.join(__dirname, '/pages/docs/tools.html'));
+});
+/* PEMBATAS */
 app.get('/api/ragbot', async (req, res) => {
   try {
     const message = req.query.message;
@@ -203,13 +262,13 @@ app.get('/api/blackboxAIChat', async (req, res) => {
 app.get('/api/openai', async (req, res) => {
   try {
     const message = req.query.message;
-    if (!message) {
+    if (!text) {
       return res.status(400).json({ error: 'Parameter "message" tidak ditemukan' });
     }
-    const response = await blackboxAIChat(message);
+    const response = await GPT(text);
     res.status(200).json({
       status: 200,
-      creator: "Izukioka",
+      creator: "Izukiokai",
       data: { response }
     });
   } catch (error) {
@@ -220,6 +279,10 @@ app.get('/api/openai', async (req, res) => {
 app.use((req, res, next) => {
   res.status(404).send("Sorry can't find that!");
 });
+
+/*app.use(((req, res, next) => {
+  res.status.sendFile(path.join(__dirname, '/pages/home.html'));
+});*/
 
 app.use((err, req, res, next) => {
   console.error(err.stack);
@@ -232,4 +295,3 @@ app.listen(PORT, () => {
 });
 
 module.exports = app
-        
