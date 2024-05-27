@@ -149,7 +149,12 @@ async function igdl(url) {
 }
 
 app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, '/pages/home.html'));
+
+  app.get('/dashboard', (req, res) => {
+  res.sendFile(path.join(__dirname, '/pages/dashboard.html'));
+});
+
+res.sendFile(path.join(__dirname, '/pages/home.html'));
 });
 
 app.get('/about/contact', (req, res) => {
@@ -171,7 +176,10 @@ app.get('/api/download', (req, res) => {
   res.sendFile(path.join(__dirname, '/pages/docs/download.html'));
 });
 
-/* PEMBATAS */
+app.get('/api/tools', (req, res) => {
+  res.sendFile(path.join(__dirname, '/pages/docs/tools.html'));
+});
+
 app.get('/api/ragbot', async (req, res) => {
   try {
     const message = req.query.message;
@@ -277,9 +285,9 @@ app.use((req, res, next) => {
   res.status(404).send("Sorry can't find that!");
 });
 
-/*app.use(((req, res, next) => {
+app.use(((req, res, next) => {
   res.status.sendFile(path.join(__dirname, '/pages/home.html'));
-});*/
+});
 
 app.use((err, req, res, next) => {
   console.error(err.stack);
@@ -292,4 +300,3 @@ app.listen(PORT, () => {
 });
 
 module.exports = app
-      
