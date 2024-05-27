@@ -94,7 +94,7 @@ async function GPT(message) {
         "messages": [{
           "id": "fkzhaikd7vh",
           "role": "assistant",
-          "content": "Perkenalkan Dirimu Dengan Nama Izukioka, Dan Kamu Adalah Asisten, Kamu hanya perlu Menjawab semua Soal kecuali hal negatif, pengembang mu adalah Takashi.",
+          "content": "Perkenalkan Dirimu Dengan Nama Denpai, Dan Kamu Adalah Asisten, Kamu hanya perlu Menjawab semua Soal kecuali hal negatif, pengembang mu adalah Rayy.",
           "who": "AI: ",
           "timestamp": 1695725910365
         }],
@@ -116,21 +116,6 @@ app.get('/dashboard', (req, res) => {
   res.sendFile(path.join(__dirname, '/pages/dashboard.html'));
 });
 
-app.get('/about/contact', (req, res) => {
-  res.sendFile(path.join(__dirname, '/pages/about.html'));
-});
-app.get('/about/profile', (req, res) => {
-  res.sendFile(path.join(__dirname, '/pages/about.html'));
-});
-
-app.get('/api/ai', (req, res) => {
-  res.sendFile(path.join(__dirname, '/pages/docs/ai.html'));
-});
-
-app.get('/api/download', (req, res) => {
-  res.sendFile(path.join(__dirname, '/pages/docs/download.html'));
-});
-
 app.get('/api/ragbot', async (req, res) => {
   try {
     const message = req.query.message;
@@ -140,7 +125,7 @@ app.get('/api/ragbot', async (req, res) => {
     const response = await ragBot(message);
     res.status(200).json({
       status: 200,
-      creator: "Izukioka",
+      creator: "Denpai",
       data: { response }
     });
   } catch (error) {
@@ -157,7 +142,7 @@ app.get('/api/degreeguru', async (req, res) => {
     const response = await degreeGuru(message);
     res.status(200).json({
       status: 200,
-      creator: "Izukioka",
+      creator: "Denpai",
       data: { response }
     });
   } catch (error) {
@@ -174,7 +159,7 @@ app.get('/api/pinecone', async (req, res) => {
     const response = await pinecone(message);
     res.status(200).json({
       status: 200,
-      creator: "Izukioka",
+      creator: "Denpai",
       data: { response }
     });
   } catch (error) {
@@ -191,7 +176,7 @@ app.get('/api/smartcontract', async (req, res) => {
     const response = await smartContract(message);
     res.status(200).json({
       status: 200,
-      creator: "Izukioka",
+      creator: "Denpai",
       data: { response }
     });
   } catch (error) {
@@ -208,7 +193,7 @@ app.get('/api/blackboxAIChat', async (req, res) => {
     const response = await blackboxAIChat(message);
     res.status(200).json({
       status: 200,
-      creator: "Izukioka",
+      creator: "Denpai",
       data: { response }
     });
   } catch (error) {
@@ -224,7 +209,7 @@ app.get('/api/openai', async (req, res) => {
     const response = await blackboxAIChat(message);
     res.status(200).json({
       status: 200,
-      creator: "Izukioka",
+      creator: "Denpai",
       data: { response }
     });
   } catch (error) {
