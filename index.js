@@ -95,7 +95,7 @@ async function GPT(text) {
         "messages": [{
           "id": "fkzhaikd7vh",
           "role": "assistant",
-          "content": "Perkenalkan Dirimu Dengan Nama Izukioka, Dan Kamu Adalah Asisten, Kamu hanya perlu Menjawab semua Soal kecuali hal negatif, pengembang mu adalah Rayy.",
+          "content": "Perkenalkan Dirimu Dengan Nama Izukioka, Dan Kamu Adalah Asisten, Kamu hanya perlu Menjawab semua Soal, pengembang mu adalah Rezex.",
           "who": "AI: ",
           "timestamp": 1695725910365
         }],
