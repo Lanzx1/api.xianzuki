@@ -157,8 +157,8 @@ app.get('/', (req, res) => {
 res.sendFile(path.join(__dirname, '/pages/home.html'));
 });
 
-app.get('/about/contact', (req, res) => {
-  res.sendFile(path.join(__dirname, '/pages/about.html'));
+app.get('/chatbot/chatbot', (req, res) => {
+  res.sendFile(path.join(__dirname, '/pages/bot.html'));
 });
 app.get('/about/profile', (req, res) => {
   res.sendFile(path.join(__dirname, '/pages/about.html'));
