@@ -172,23 +172,6 @@ app.get('/api/ai', (req, res) => {
   res.sendFile(path.join(__dirname, '/pages/docs/ai.html'));
 });
 
-app.get('/api/ytdl/video', async (req, res) => {
-  try {
-    const url = req.query.url;
-    if (!url) {
-      return res.status(400).json({ error: 'Parameter "url" tidak ditemukan' });
-    }
-    const response = await ytdown2(url);
-    res.status(200).json({
-      status: 200,
-      creator: creator,
-      result: response
-    });
-  } catch (error) {
-    res.status(500).json({ error: "Itu Bukan Url YouTube"});
-  }
-});
-
 app.get('/api/download', (req, res) => {
   res.sendFile(path.join(__dirname, '/pages/docs/download.html'));
 });
@@ -211,6 +194,23 @@ app.get('/api/ragbot', async (req, res) => {
     });
   } catch (error) {
     res.status(500).json({ error: error.message });
+  }
+});
+
+app.get('/api/ytdl/video', async (req, res) => {
+  try {
+    const url = req.query.url;
+    if (!url) {
+      return res.status(400).json({ error: 'Parameter "url" tidak ditemukan' });
+    }
+    const response = await ytdown2(url);
+    res.status(200).json({
+      status: 200,
+      creator: "rezex",
+      result: response
+    });
+  } catch (error) {
+    res.status(500).json({ error: "Itu Bukan Url YouTube"});
   }
 });
 
