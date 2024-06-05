@@ -265,6 +265,22 @@ header ul li a {
         max-width: 300px;
     }
 }
+
+                function displayDateTime() {
+            var now = new Date();
+            var year = now.getFullYear();
+            var month = String(now.getMonth() + 1).padStart(2, '0'); // Months are 0-based
+            var date = String(now.getDate()).padStart(2, '0');
+            var hours = String(now.getHours()).padStart(2, '0');
+            var minutes = String(now.getMinutes()).padStart(2, '0');
+            var seconds = String(now.getSeconds()).padStart(2, '0');
+            
+            var formattedDateTime = `${year}-${month}-${date} ${hours}:${minutes}:${seconds}`;
+            document.getElementById("datetime").textContent = formattedDateTime;
+        }
+
+        setInterval(displayDateTime, 1000); // Update the date and time every second
+        </script>
     </style>
 </head>
 <body>
