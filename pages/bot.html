@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,7 +8,7 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-image: url('https://telegra.ph/file/41639c0968e60e6213bfa.jpg'); /* Ganti dengan URL gambar background Anda */
+            background-image: url('https://telegra.ph/file/159d45df8691b8a8e00a9.mp4'); /* Ganti dengan URL gambar background Anda */
             background-size: cover;
             background-position: center;
             display: flex;
@@ -85,10 +86,21 @@
             color: white;
             cursor: pointer;
         }
+                .dark-mode {
+            background-color: #343a40;
+        }
+        .dark-mode .chat-container {
+            background-color: #454d55;
+        }
     </style>
 </head>
 <body>
     <div id="chat-container">
+    	    <div class="toggle-mode">
+        <label for="dark-mode">ClickMode</label>
+        <input type="checkbox" id="dark-mode" onchange="toggleDarkMode()">
+        <span class="switch"></span>
+    </div>
         <div id="chat-header">
             Simple Chatbot
         </div>
@@ -156,6 +168,65 @@
                 appendMessage('bot', 'Sorry, there was an error processing your request.', 'https://telegra.ph/file/6cfe4962828553dd6cd2a.jpg');
             }
         }
+        let darkMode = false;
+
+    function sendMessage() {
+        var userInput = document.getElementById('user-input').value;
+        var chatBox = document.getElementById('chat-box');
+        
+        // Append user message to chat box
+        chatBox.innerHTML += `
+            <div class="message user">
+                <div class="profile">
+                    <img src="https://telegra.ph/file/6cfe4962828553dd6cd2a.jpg" alt="User Profile">
+                </div>
+                <div class="content">${userInput}</div>
+            </div>
+        `;
+        
+        // Send user message to server and receive response
+        fetch('https://airyx.vercel.app/api/openai', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                prompt: userInput
+            })
+        })
+        .then(response => response.json())
+        .then(data => {
+            // Append bot response to chat box
+            chatBox.innerHTML += `
+                <div class="message bot">
+                    <div class="profile">
+                        <img src="bot_profile.jpg" alt="Bot Profile">
+                    </div>
+                    <div class="content">${data.choices[0].text}</div>
+                </div>
+            `;
+            scrollToBottom();
+        })
+        .catch(error => console.error('Error:', error));
+        
+        // Clear user input field
+        document.getElementById('user-input').value = '';
+    }
+
+    function toggleDarkMode() {
+        darkMode = !darkMode;
+        var body = document.body;
+        if (darkMode) {
+            body.classList.add('dark-mode');
+        } else {
+            body.classList.remove('dark-mode');
+        }
+    }
+
+    function scrollToBottom() {
+        var chatBox = document.getElementById('chat-box');
+        chatBox.scrollTop = chatBox.scrollHeight;
+    }
     </script>
 </body>
 </html>
