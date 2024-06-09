@@ -232,7 +232,7 @@ app.use(express.urlencoded({ extended: true }));
 app.set('view engine', 'ejs');
 app.set('views', './views');
 
-app.get('/', (req, res) => {
+app.get('/chatbb', (req, res) => {
     res.render('index', { title: 'Chatbot with Timestamp' });
 });
 
