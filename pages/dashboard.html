@@ -101,16 +101,18 @@
     </ul>
 
     <div id="content-wrapper" class="d-flex flex-column">
-    	      <div class="toggle-mode">
-        <label for="dark-mode">ClickMode</label>
-        <input type="checkbox" id="dark-mode" onchange="toggleDarkMode()">
-        <span class="switch"></span>
-      </div>
+    	    
       <div id="content">
         <nav class="navbar navbar-expand navbar-light bg-navbar topbar mb-4 static-top bg-gray-900">
           <button id="sidebarToggleTop" class="btn btn-link rounded-circle mr-3">
             <i class="fa fa-bars"></i>
+            
           </button>
+          <div class="toggle-mode">
+        <label for="dark-mode">Change Theme</label>
+        <input type="checkbox" id="dark-mode" onchange="toggleDarkMode()">
+        <span class="switch"></span>
+      </div>
           <ul class="navbar-nav ml-auto">
             <div class="topbar-divider d-none d-sm-block"></div>
             <li class="nav-item dropdown no-arrow">
