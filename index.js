@@ -200,6 +200,9 @@ app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, '/pages/dashboard.html'));
 });
 
+res.sendFile(path.join(__dirname, '/pages/log.html'));
+});
+
 res.sendFile(path.join(__dirname, '/pages/home.html'));
 });
 
