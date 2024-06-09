@@ -24,6 +24,13 @@
   <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/highlight.min.js"></script>
   <script>
     hljs.initHighlightingOnLoad();
+    }
+    .dark-mode {
+            background-color: #343a40;
+        }
+        .dark-mode .chat-container {
+            background-color: #454d55;
+        }
   </script>
 </head>
 
@@ -42,6 +49,11 @@
           <span>Documentation</span></a>
       </li>
       <hr class="sidebar-divider" />
+      <div class="toggle-mode">
+        <label for="dark-mode">ClickMode</label>
+        <input type="checkbox" id="dark-mode" onchange="toggleDarkMode()">
+        <span class="switch"></span>
+      </div>
       <div class="sidebar-heading">Features</div>
       <li class="nav-item">
           <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseSearch" aria-expanded="true"
@@ -165,6 +177,20 @@
     <script src="https://indrijunanda.github.io/RuangAdmin/vendor/jquery-easing/jquery.easing.min.js"></script>
     <script src="https://indrijunanda.github.io/RuangAdmin/js/ruang-admin.min.js"></script>
   </div>
+    function toggleDarkMode() {
+        darkMode = !darkMode;
+        var body = document.body;
+        if (darkMode) {
+            body.classList.add('dark-mode');
+        } else {
+            body.classList.remove('dark-mode');
+        }
+    }
+
+    function scrollToBottom() {
+        var chatBox = document.getElementById('chat-box');
+        chatBox.scrollTop = chatBox.scrollHeight;
+    }
 </body>
 
          </html>
