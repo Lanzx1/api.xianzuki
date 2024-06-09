@@ -226,27 +226,9 @@ app.get('/api/tools', (req, res) => {
   res.sendFile(path.join(__dirname, '/pages/docs/tools.html'));
 });
 
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
-
-app.set('view engine', 'ejs');
-app.set('views', './views');
-
 app.get('/chatbb', (req, res) => {
     res.sendFile(path.join(__dirname, '/pages/chatbb.html'));
 });
-
-app.post('/send', (req, res) => {
-    const message = req.body.message;
-    const timestamp = new Date().toLocaleTimeString();
-    chatLog.innerHTML += `<li class="chat-bubble chat-bubble--user1">${timestamp} - ${message}</li>`;
-    res.redirect('/');
-});
-
-app.listen(port, () => {
-    console.log(`Server started on port ${port}`);
-});
-
 
 app.get('/api/ragbot', async (req, res) => {
   try {
