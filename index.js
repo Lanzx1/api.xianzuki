@@ -203,7 +203,8 @@ app.get('/', (req, res) => {
 res.sendFile(path.join(__dirname, '/pages/log.html'));
 });
 
-res.sendFile(path.join(__dirname, '/pages/home.html'));
+app.get('/home', (req, res) => {
+  res.sendFile(path.join(__dirname, '/pages/home.html'));
 });
 
 app.get('/chatbot/chatbot', (req, res) => {
