@@ -51,11 +51,6 @@
           <span>Documentation</span></a>
       </li>
       <hr class="sidebar-divider" />
-      <div class="toggle-mode">
-        <label for="dark-mode">ClickMode</label>
-        <input type="checkbox" id="dark-mode" onchange="toggleDarkMode()">
-        <span class="switch"></span>
-      </div>
       <div class="sidebar-heading">Features</div>
       <li class="nav-item">
           <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseSearch" aria-expanded="true"
@@ -106,6 +101,11 @@
     </ul>
 
     <div id="content-wrapper" class="d-flex flex-column">
+    	      <div class="toggle-mode">
+        <label for="dark-mode">ClickMode</label>
+        <input type="checkbox" id="dark-mode" onchange="toggleDarkMode()">
+        <span class="switch"></span>
+      </div>
       <div id="content">
         <nav class="navbar navbar-expand navbar-light bg-navbar topbar mb-4 static-top bg-gray-900">
           <button id="sidebarToggleTop" class="btn btn-link rounded-circle mr-3">
@@ -200,4 +200,4 @@
     }
   </script>
 </body>
-         </html>
+</html>
