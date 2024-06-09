@@ -4,10 +4,12 @@ const path = require('path');
 const axios = require('axios');
 const cheerio = require('cheerio')
 const app = express();
+const port = 3000;
 const PORT = process.env.PORT || 3000;
 app.enable("trust proxy");
 app.set("json spaces", 2);
 app.use(cors());
+
 
 async function ragBot(message) {
   try {
@@ -223,6 +225,28 @@ app.get('/api/download', (req, res) => {
 app.get('/api/tools', (req, res) => {
   res.sendFile(path.join(__dirname, '/pages/docs/tools.html'));
 });
+
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
+app.set('view engine', 'ejs');
+app.set('views', './views');
+
+app.get('/', (req, res) => {
+    res.render('index', { title: 'Chatbot with Timestamp' });
+});
+
+app.post('/send', (req, res) => {
+    const message = req.body.message;
+    const timestamp = new Date().toLocaleTimeString();
+    chatLog.innerHTML += `<li class="chat-bubble chat-bubble--user1">${timestamp} - ${message}</li>`;
+    res.redirect('/');
+});
+
+app.listen(port, () => {
+    console.log(`Server started on port ${port}`);
+});
+
 
 app.get('/api/ragbot', async (req, res) => {
   try {
