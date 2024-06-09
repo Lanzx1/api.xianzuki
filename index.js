@@ -233,7 +233,7 @@ app.set('view engine', 'ejs');
 app.set('views', './views');
 
 app.get('/chatbb', (req, res) => {
-    res.render('index', { title: 'Chatbot with Timestamp' });
+    res.sendFile(path.join(__dirname, '/pages/chatbb.html'));
 });
 
 app.post('/send', (req, res) => {
