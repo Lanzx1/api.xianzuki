@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login Akun | Daftar Akun</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+        .container {
+            width: 50%;
+            margin: 40px auto;
+            background-color: #f0f0f0;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .button {
+            background-color: #4CAF50;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .button:hover {
+            background-color: #3e8e41;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 id="typed-text"></h1>
+        <form>
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username"><br><br>
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email"><br><br>
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password"><br><br>
+            <label for="confirm_password">Konfirmasi Password:</label>
+            <input type="password" id="confirm_password" name="confirm_password"><br><br>
+            <input type="submit" value="Daftar" class="button">
+        </form>
+        <script>
+            const typedTextSpan = document.getElementById("typed-text"),
+                textArray = ["Login Akun", "Daftar Akun"],
+                typingDelay = 200,
+                erasingDelay = 100,
+                newTextDelay = 2e3;
+            let textArrayIndex = 0,
+                charIndex = 0;
+
+            function type() {
+                charIndex < textArray[textArrayIndex].length ? (typedTextSpan.textContent += textArray[textArrayIndex].charAt(charIndex), charIndex++, setTimeout(type, typingDelay)) : setTimeout(erase, erasingDelay)
+            }
+
+            function erase() {
+                charIndex > 0 ? (typedTextSpan.textContent = textArray[textArrayIndex].substring(0, charIndex - 1), charIndex--, setTimeout(erase, erasingDelay)) : (textArrayIndex++, textArrayIndex >= textArray.length && (textArrayIndex = 0), setTimeout(type, newTextDelay))
+            }
+
+            document.addEventListener("DOMContentLoaded", (function() {
+                setTimeout(type, newTextDelay)
+            }));
+        </script>
+    </div>
+</body>
+</html>
