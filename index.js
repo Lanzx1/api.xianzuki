@@ -204,7 +204,7 @@ res.sendFile(path.join(__dirname, '/pages/home.html'));
 });
 
 app.get('/login/login', (req, res) => {
-  res.sendFile(path.join(__dirname, '/pages/log.html'));
+  res.sendFile(path.join(__dirname, '/pages/login.html'));
 });
 
 app.get('/chatbot/chatbot', (req, res) => {
