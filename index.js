@@ -203,7 +203,7 @@ app.get('/', (req, res) => {
 res.sendFile(path.join(__dirname, '/pages/home.html'));
 });
 
-app.get('/log', (req, res) => {
+app.get('/login/login', (req, res) => {
   res.sendFile(path.join(__dirname, '/pages/log.html'));
 });
 
