@@ -230,10 +230,6 @@ app.get('/api/tools', (req, res) => {
   res.sendFile(path.join(__dirname, '/pages/docs/tools.html'));
 });
 
-app.get('/chatbb', (req, res) => {
-    res.sendFile(path.join(__dirname, '/pages/chatbb.html'));
-});
-
 app.get('/api/ragbot', async (req, res) => {
   try {
     const message = req.query.message;
