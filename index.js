@@ -207,7 +207,7 @@ app.get('/login/login', (req, res) => {
   res.sendFile(path.join(__dirname, '/pages/login.html'));
 });
 
-app.get('/chatbot/chatbot', (req, res) => {
+app.get('/sewabot', (req, res) => {
   res.sendFile(path.join(__dirname, '/pages/bot.html'));
 });
 app.get('/about/profile', (req, res) => {
