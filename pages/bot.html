@@ -1,232 +1,41 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chatbot</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-image: url('https://media1.tenor.com/m/fbRDrcgl1-8AAAAd/punishing-gray-raven-alpha.gif'); /* Ganti dengan URL gambar background Anda */
-            background-size: cover;
-            background-position: center;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-        }
-
-        #chat-container {
-            width: 400px;
-            max-width: 100%;
-            background-color: rgba(255, 255, 255, 0.8);
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            overflow: hidden;
-        }
-
-        #chat-header {
-            background-color: #007bff;
-            color: white;
-            padding: 10px;
-            text-align: center;
-        }
-
-        #chat-box {
-            height: 300px;
-            overflow-y: scroll;
-            padding: 10px;
-        }
-
-        .chat-message {
-            display: flex;
-            margin-bottom: 10px;
-        }
-
-        .chat-message.bot .message {
-            background-color: #e1f5fe;
-            margin-left: 10px;
-        }
-
-        .chat-message.user .message {
-            background-color: #e0e0e0;
-            margin-right: 10px;
-            align-self: flex-end;
-        }
-
-        .chat-message img {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-        }
-
-        .message {
-            padding: 10px;
-            border-radius: 10px;
-            max-width: 70%;
-        }
-
-        #input-container {
-            display: flex;
-            border-top: 1px solid #ddd;
-        }
-
-        #input-container input {
-            border: none;
-            padding: 10px;
-            flex: 1;
-        }
-
-        #input-container button {
-            padding: 10px;
-            border: none;
-            background-color: #007bff;
-            color: white;
-            cursor: pointer;
-        }
-                .dark-mode {
-            background-color: #343a40;
-        }
-        .dark-mode .chat-container {
-            background-color: #454d55;
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>bálzz store</title>
+<link rel="stylesheet" href="./balzz/style.css">
 </head>
 <body>
-    <div id="chat-container">
-    	    <div class="toggle-mode">
-        <label for="dark-mode">ClickMode</label>
-        <input type="checkbox" id="dark-mode" onchange="toggleDarkMode()">
-        <span class="switch"></span>
+<header>
+    <h1 class="fade-in">STORE X</h1>
+    <nav class="fade-in">
+        <ul>
+<li><a href="/" class="active">Home</a></li>
+        </ul>
+    </nav>
+</header>
+<section id="home" class="fade-in">
+    <h2>Welcome</h2>
+</section>
+<section id="products">
+    <h2 class="fade-in">PRODUK</h2>
+    <h2 class="fade-in" style="color: #76A045">——————————————</h2>
+    <div class="product-container">
+        <div class="product scale-in">
+            <img url="https://telegra.ph/file/bc1cda07aa51d5d4764b6.jpg" alt="SEWABOT">
+            <h3>SEWABOT</h3>
+            <p>Rp 25.000 / bulan</p>
+            
+            <!-- perhatian <br> jika ingin ada paragraf -->
+            <h2 class="pler"> KEUNTUNGAN </h2>
+            <p class="description">
+             Fast Respon <br>
+             Hidetag <br>
+             Rpg Game <br>
+             Close $ Open Grup
+             </p>
+            <a href="https://wa.me/6288802101736?text=bang+mau+sewa+bot+dong" class="buy-now">Buy Now</a>
     </div>
-        <div id="chat-header">
-            Simple Chatbot
-        </div>
-        <div id="chat-box">
-            <!-- Chat messages will be appended here -->
-        </div>
-        <div id="input-container">
-            <input type="text" id="user-input" placeholder="Type a message...">
-            <button onclick="sendMessage()">Send</button>
-        </div>
     </div>
-
-    <script>
-        const chatBox = document.getElementById('chat-box');
-        const userInput = document.getElementById('user-input');
-        const apiKey = 'sk-proj-9VqHONylbMwzqKyHyseoT3BlbkFJjnd7tZyku2zMhdPfdMww'; // Ganti dengan API key OpenAI Anda
-
-        function appendMessage(sender, message, profileUrl) {
-            const messageElement = document.createElement('div');
-            messageElement.classList.add('chat-message', sender);
-            
-            const profileImg = document.createElement('img');
-            profileImg.src = profileUrl;
-            
-            const messageText = document.createElement('div');
-            messageText.classList.add('message');
-            messageText.textContent = message;
-            
-            messageElement.appendChild(profileImg);
-            messageElement.appendChild(messageText);
-            chatBox.appendChild(messageElement);
-            chatBox.scrollTop = chatBox.scrollHeight;
-        }
-
-        async function sendMessage() {
-            const message = userInput.value;
-            if (!message) return;
-            
-            appendMessage('user', message, 'https://telegra.ph/file/6cfe4962828553dd6cd2a.jpg'); // Ganti dengan URL gambar profil user
-            userInput.value = '';
-
-            try {
-                const response = await fetch('https://api.openai.com/v1/chat/completions', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'Authorization': `Bearer ${apiKey}`
-                    },
-                    body: JSON.stringify({
-                        model: "gpt-4",
-                        messages: [{ role: "user", content: message }]
-                    })
-                });
-
-                if (!response.ok) {
-                    throw new Error(`HTTP error! Status: ${response.status}`);
-                }
-
-                const data = await response.json();
-                const botMessage = data.choices[0].message.content;
-
-                appendMessage('bot', botMessage, 'https://telegra.ph/file/6cfe4962828553dd6cd2a.jpg'); // Ganti dengan URL gambar profil bot
-            } catch (error) {
-                console.error('Error:', error);
-                appendMessage('bot', 'Sorry, there was an error processing your request.', 'https://telegra.ph/file/6cfe4962828553dd6cd2a.jpg');
-            }
-        }
-        let darkMode = false;
-
-    function sendMessage() {
-        var userInput = document.getElementById('user-input').value;
-        var chatBox = document.getElementById('chat-box');
-        
-        // Append user message to chat box
-        chatBox.innerHTML += `
-            <div class="message user">
-                <div class="profile">
-                    <img src="https://telegra.ph/file/6cfe4962828553dd6cd2a.jpg" alt="User Profile">
-                </div>
-                <div class="content">${userInput}</div>
-            </div>
-        `;
-        
-        // Send user message to server and receive response
-        fetch('https://airyx.vercel.app/api/openai', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                prompt: userInput
-            })
-        })
-        .then(response => response.json())
-        .then(data => {
-            // Append bot response to chat box
-            chatBox.innerHTML += `
-                <div class="message bot">
-                    <div class="profile">
-                        <img src="bot_profile.jpg" alt="Bot Profile">
-                    </div>
-                    <div class="content">${data.choices[0].text}</div>
-                </div>
-            `;
-            scrollToBottom();
-        })
-        .catch(error => console.error('Error:', error));
-        
-        // Clear user input field
-        document.getElementById('user-input').value = '';
-    }
-
-    function toggleDarkMode() {
-        darkMode = !darkMode;
-        var body = document.body;
-        if (darkMode) {
-            body.classList.add('dark-mode');
-        } else {
-            body.classList.remove('dark-mode');
-        }
-    }
-
-    function scrollToBottom() {
-        var chatBox = document.getElementById('chat-box');
-        chatBox.scrollTop = chatBox.scrollHeight;
-    }
-    </script>
-</body>
-</html>
+</section>
