@@ -3,309 +3,352 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Zuki - APIs.</title>
+    <title>Dashboard</title>
     <style>
-    @import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
-
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Poppins', sans-serif;
-}
-
-section {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    background: url(https://media1.tenor.com/m/fbRDrcgl1-8AAAAd/punishing-gray-raven-alpha.gif);
-    background-size: cover;
-    background-position: center;
-    background-attachment: fixed;
-    padding: 40px;
-    
-}
-
-.container {
-    position: relative;
-    width: calc(100% - 100px);
-    background: rgba(255, 255, 255, 0.308);
-    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.05);
-    min-height: calc(100vh - 280px);
-    min-height: 300px;
-    border-radius: 20px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 50px;
-    padding-top: 100px;
-    margin-top: 40px;
-}
-
-header {
-    position: absolute;
-    right: 20px;
-    left: 20px;
-    top: -40px;
-    padding: 20px 50px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background: rgba(255, 255, 255, 0.2);
-    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.05);
-    border-radius: 20px;
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.25);
-    border-top: 1px solid rgba(255, 255, 255, 0.5);
-    border-left: 1px solid rgba(255, 255, 255, 0.5);
-}
-
-header .logo {
-    color: #fd21bb;
-    font-weight: 700;
-    text-decoration: none;
-    font-size: 2.5em;
-}
-
-header ul {
-    display: flex;
-}
-
-header ul li {
-    list-style: none;
-    margin: 0 10px;
-}
-
-header ul li a {
-    text-decoration: none;
-    font-weight: 500;
-    color: #000000;
-    padding: 8px 15px;
-    border-radius: 25px;
-}
-
-header ul li a:hover,
-header ul li a.active {
-    background: #fff;
-    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
-}
-
-.content {
-    transform: translateX(-100px);
-    max-width: 700px;
-    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
-    border-radius: 20px;
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.25);
-    border-top: 1px solid rgba(255, 255, 255, 0.5);
-    border-left: 1px solid rgba(255, 255, 255, 0.5);
-    padding: 40px;
-    padding-left: 110px;
-}
-
-.content h2 {
-    font-size: 2.5em;
-    color: #fd21bb;
-    padding-bottom: 10px;
-}
-
-.content p {
-    font-size: 19px;
-    color: #000000;
-}
-
-.content a {
-    display: inline-block;
-    padding: 15px 30px;
-    background: #fff;
-    color: #000000;
-    margin-top: 20px;
-    border-radius: 30px;
-    font-size: 1.2em;
-    font-weight: 500;
-    text-decoration: none;
-    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
-} 
-
-.imgBx {
-    max-width: -200px;
-    animation: animate 5s linear infinite;
-}
-@keyframes animate
-{
-    0%,100%
-    {
-        transform: translateY(50px);
-    }
-    50% 
-    {
-        transform: translateY(100px);
-    }
-}
-
-.sci {
-    position: absolute;
-    right: -25px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-}
-
-.sci li {
-    list-style: none;
-}
-
-.sci li a {
-    text-decoration: none;
-    width: 50px;
-    height: 50px;
-    background: #fff;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 50%;
-    margin: 5px 0;
-    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
-}
-
-.sci li a img {
-    transform: scale(0.6);
-    transition: 0.5s;
-}
-
-.sci li:hover a img {
-    transform: scale(0.6) rotate(360deg);
-}
-
-.copyrightText {
-    position: absolute;
-    bottom: 2px;
-    left: 70px;
-    color: rgb(177, 177, 177);
-}
-
-@media (max-width: 1200px) {
-    .container {
-        position: relative;
-        width: calc(100% - 20px);
-    }
-}
-
-@media (max-width: 992px) {
-    section {
-        padding: 50px 10px 10px;
-    }
-    .container {
-        flex-direction: column;
-        height: auto;
-        padding: 20px;
-    }
-    .container .content {
-        transform: translateX(0px);
-        max-width: 100%;
-        padding: 30px;
-        margin-top: -40px;
-    }
-    header {
-        position: relative;
-        flex-direction: column;
-        width: 100%;
-        top: -60px;
-        padding: 20px;
-        right: 0px;
-        left: 0px;
-    }
-    header ul {
-        margin-top: 10px;
-        flex-wrap: wrap;
-        justify-content: center;
-    }
-    header ul li {
-        margin: 2px;
-    }
-}
-header ul li a {
-        display: inline-block;
-    }
-    .sci {
-        position: relative;
-        flex-direction: row;
-        left: 0;
-    }
-    .imgBx {
-        margin-bottom: 50px;
-    }
-    .content a {
-        font-size: 1em;
-        padding: 10px 20px;
-    }
-
-@keyframes animate{
-    0%,100%
-    {
-        transform: translateY(-20px);
-    }
-    50% 
-    {
-        transform: translateY(20px);
-    }
-}
-.sci li a {
-    margin: 0 10px;
-}
-
-@media (max-width: 600px) {
-    .content h2 {
-        font-size: 1.5em;
-        color: #000000;
-    }
-    .imgBx img {
-        max-width: 300px;
-    }
-}
-
-                function displayDateTime() {
-            var now = new Date();
-            var year = now.getFullYear();
-            var month = String(now.getMonth() + 1).padStart(2, '0'); // Months are 0-based
-            var date = String(now.getDate()).padStart(2, '0');
-            var hours = String(now.getHours()).padStart(2, '0');
-            var minutes = String(now.getMinutes()).padStart(2, '0');
-            var seconds = String(now.getSeconds()).padStart(2, '0');
-            
-            var formattedDateTime = `${year}-${month}-${date} ${hours}:${minutes}:${seconds}`;
-            document.getElementById("datetime").textContent = formattedDateTime;
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            transition: background-color 0.3s, color 0.3s;
+            background: url(https://media1.tenor.com/m/fbRDrcgl1-8AAAAd/punishing-gray-raven-alpha.gif);
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
         }
 
-        setInterval(displayDateTime, 1000); // Update the date and time every second
-        </script>
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #333;
+            padding: 10px;
+            color: white;
+        }
+
+        .menu-icon, .profile-icon, .night-mode-icon {
+            cursor: pointer;
+            font-size: 20px;
+        }
+
+        .actions {
+            display: flex;
+            align-items: center;
+        }
+
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f9f9f9;
+            min-width: 200px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+        }
+
+        .dropdown-content a {
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+        }
+
+        .dropdown-content a:hover {
+            background-color: #f1f1f1;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        .content {
+            padding: 20px;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 10px;
+            background-color: #333;
+            color: white;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+        }
+
+        .dark-mode {
+            background-color: #121212;
+            color: white;
+        }
+
+        .profile-icon {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            cursor: pointer;
+            margin-left: 10px;
+        }
+
+        .icon {
+            margin-right: 10px;
+        }
+
+        .sidebar {
+            width: 250px;
+            height: 100%;
+            position: fixed;
+            left: -250px; /* Start off-screen */
+            top: 0;
+            background-color: #333;
+            overflow-x: hidden;
+            padding-top: 20px;
+            z-index: 1;
+            color: white;
+            transition: left 0.3s ease; /* Slide animation */
+        }
+
+        .sidebar a {
+            padding: 10px 15px;
+            text-decoration: none;
+            font-size: 18px;
+            color: white;
+            display: block;
+            transition: 0.3s;
+        }
+
+        .sidebar a:hover {
+            background-color: #575757;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 10px;
+            right: 25px;
+            font-size: 36px;
+            cursor: pointer;
+        }
+
+        .open-sidebar {
+            cursor: pointer;
+            font-size: 20px;
+        }
+
+        .sidebar-header {
+            font-size: 24px;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .sidebar-divider {
+            border-bottom: 1px solid #575757;
+            margin: 0 15px;
+            padding-bottom: 10px;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .feature-block {
+            margin-top: 20px;
+            background-color: #f9f9f9;
+            padding: 15px;
+            border-radius: 5px;
+        }
+
+        .feature-title {
+            font-weight: bold;
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+
+        .feature-list {
+            margin-top: 10px;
+            font-size: 16px;
+        }
+
+        .feature-list-item {
+            margin-bottom: 5px;
+        }
+
+        .block-marker {
+            text-align: center;
+            font-weight: bold;
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        .feature-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20
+}
+        .feature-table th, .feature-table td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: center;
+        }
+
+        .feature-table th {
+            background-color: #f2f2f2;
+        }
+
+        .feature-table tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        .get-link {
+            text-decoration: none;
+            color: blue;
+            cursor: pointer;
+        }
     </style>
 </head>
 <body>
-    <section>
-        <div class="container">
-            <header>
-                <a href="/zonk" class="logo">Zuki APIs</a>
-                <ul>
-                    <li><a href="/" class="active">Home</a></li>
-                    <li><a href="/login/login">Docs</a></li>
-                </ul>
-            </header>
-            <div class="content">
-                <h2>Apa Itu Api?</h2>
-                <p>Zuki - Api Merupakan Website Yang Menyediakan API Yang Dapat Digunakan Secara Gratis Kepada Semua Orang.</p>
-                    <a href="/about/profile">Profile</a>
-                <a href="/sewabot">Sewa Bot</a>
+    <div class="navbar">
+        <div class="open-sidebar" onclick="toggleSidebar(true)">☰</div>
+        <div class="actions">
+            <div class="night-mode-icon" onclick="toggleNightMode()">🌙</div>
+            <div class="dropdown">
+                <img src="https://telegra.ph/file/9045405bb6f469853f303.jpg" alt="Profile" class="profile-icon">
+                <div class="dropdown-content">
+                    <a href="/about/profile"><span class="icon"><i class="fas fa-user"></i></span> Profil</a>
+                    <a href="/sewabot"><span class="icon"><i class="fas fa-user"></i></span> Bot</a>
+                </div>
             </div>
-            <ul class="sci">
-            <li><a href="https://chat.whatsapp.com/FRB5jSjjOmeGSFoAx4O1X0"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/WhatsApp.svg/1191px-WhatsApp.svg.png" style="max-width: 50px; max-height: 50px;"></a></li>
-            <li><a href="https://github.com/izukiokai"><img src="https://upload.wikimedia.org/wikipedia/commons/9/91/Octicons-mark-github.svg" style="max-width: 50px; max-height: 50px;"></a></li>
-            <li><a href="https://www.instagram.com/dcode_ln_md/"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Instagram_icon.png/1024px-Instagram_icon.png" style="max-width: 50px; max-height: 50px;"></a></li>
-        </ul>
-            <p class="Xianzuki - Apis. all rights reserved"></p>
         </div>
-    </section>
+    </div>
+    <div class="sidebar" id="sidebar">
+        <a href="javascript:void(0)" class="close-btn" onclick="toggleSidebar(false)">&times;</a>
+        <div class="sidebar-header">Ventures</div>
+        <div class="sidebar-divider"></div>
+        <a href="javascript:void(0)" onclick="showContent('content')"><span class="icon"><i class="fas fa-home"></i></span> Beranda</a>
+<span class="icon"><i class="fas fa-calendar-alt"></i></span> Catatan Perubahan</a>
+        <a href="chatbot.html"><span class="icon"><i class="fas fa-robot"></i></span> Chatbot</a>
+        <div class="sidebar-divider"></div>
+        <a href="javascript:void(0)" onclick="showContent('anime')"><span class="icon"><i class="fas fa-tv"></i></span> Anime</a>
+        <a href="javascript:void(0)" onclick="showContent('ai')"><span class="icon"><i class="fas fa-brain"></i></span> Fitur AI</a>
+    </div>
+    <div class="content" id="content">
+<h1 id="typed-text"></h1>
+        <p>This is your dashboard content. Select options from the menu to navigate.</p>
+    </div>
+    <div class="content hidden" id="restapi">
+        <div class="feature-block">
+            <div class="block-marker">——————</div>
+            <div class="feature-title">REST API Features</div>
+            <table class="feature-table">
+                <thead>
+                    <tr>
+                        <th>No</th>
+                        <th>Nama Fitur</th>
+                        <th>exec</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>GptAi</td>
+                        <td><a href="https://contoh-url.com/gptai" class="get-link">Get</a></td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>Degbor</td>
+                        <td><a href="https://contoh-url.com/degbor" class="get-link">Get</a></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="content hidden" id="ai">
+        <div class="feature-block">
+            <div class="block-marker">——————</div>
+            <div class="feature-title">AI Features</div>
+            <table class="feature-table">
+                <thead>
+                    <tr>
+                        <th>No</th>
+                        <th>Nama Fitur</th>
+                        <th>exec</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>AI Fitur 1</td>
+                        <td><a href="https://contoh-url.com/aifitur1" class="get-link">Get</a></td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>AI Fitur 2</td>
+                        <td><a href="https://contoh-url.com/aifitur2" class="get-link">Get</a></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="footer">
+        &copy; <span id="year"></span> Company, Copyright 2024
+    </div>
+
+    <script>
+    	const typedTextSpan = document.getElementById("typed-text"),
+      textArray = ["Welcome to the Dashboard", "Selamat Datang Di Dashboard"],
+      typingDelay = 200,
+      erasingDelay = 100,
+      newTextDelay = 2000;
+
+let textArrayIndex = 0,
+    charIndex = 0;
+
+function type() {
+  charIndex < textArray[textArrayIndex].length ? 
+    (typedTextSpan.textContent += textArray[textArrayIndex].charAt(charIndex), 
+     charIndex++, 
+     setTimeout(type, typingDelay)) : 
+    setTimeout(erase, erasingDelay)
+}
+
+function erase() {
+  charIndex > 0 ? 
+    (typedTextSpan.textContent = textArray[textArrayIndex].substring(0, charIndex - 1), 
+     charIndex--, 
+     setTimeout(erase, erasingDelay)) : 
+    (textArrayIndex++, 
+     textArrayIndex >= textArray.length && (textArrayIndex = 0), 
+     setTimeout(type, newTextDelay))
+}
+
+document.addEventListener("DOMContentLoaded", function() {
+  setTimeout(type, newTextDelay)
+});
+
+        function toggleNightMode() {
+            document.body.classList.toggle('dark-mode');
+        }
+
+        function toggleSidebar(open) {
+            const sidebar = document.getElementById('sidebar');
+            if (open) {
+                sidebar.style.left = '0';
+            } else {
+                sidebar.style.left = '-250px';
+            }
+        }
+
+        function showContent(section) {
+            document.querySelectorAll('.content').forEach(content => {
+                content.classList.add('hidden');
+            });
+            document.getElementById(section).classList.remove('hidden');
+            toggleSidebar(false);
+        }
+
+        document.getElementById('year').textContent = new Date().getFullYear();
+                    </script>
 </body>
-</html>
+                            </html>
+    
