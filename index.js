@@ -10,7 +10,11 @@ app.enable("trust proxy");
 app.set("json spaces", 2);
 app.use(cors());
 
-
+let key = [
+   "xinzuki",
+   "xinzuki123",
+   "admin123" 
+]
 async function ragBot(message) {
   try {
     const response = await axios.post('https://ragbot-starter.vercel.app/api/chat', {
@@ -233,15 +237,24 @@ app.get('/api/tools', (req, res) => {
 app.get('/api/ragbot', async (req, res) => {
   try {
     const message = req.query.message;
+    const apikey = req.query.apikey;
     if (!message) {
       return res.status(400).json({ error: 'Parameter "message" tidak ditemukan' });
     }
+    if (!apikey) {
+      return res.status(400).json({ error: 'Parameter "apikey" tidak ditemukan' });
+    }
     const response = await ragBot(message);
-    res.status(200).json({
+if (key.includes(apikey)) {
+  res.status(200).json({
       status: 200,
       creator: "Izukioka",
       data: { response }
     });
+} else {
+  res.status(404).json({ error: apikey +  " apikeys tidak ada di db" })
+}
+    
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
