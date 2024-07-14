@@ -218,8 +218,8 @@ app.get('/about/profile', (req, res) => {
   res.sendFile(path.join(__dirname, '/pages/about.html'));
 });
 
-app.get('/dashboard', (req, res) => {
-  res.sendFile(path.join(__dirname, '/pages/dashboard.html'));
+app.get('/portofolio', (req, res) => {
+  res.sendFile(path.join(__dirname, '/pages/portofolio.html'));
 });
 
 app.get('/api/ai', (req, res) => {
