@@ -214,6 +214,11 @@ app.get('/login/login', (req, res) => {
 app.get('/sewabot', (req, res) => {
   res.sendFile(path.join(__dirname, '/pages/bot.html'));
 });
+
+app.get('/chabot', (req, res) => {
+  res.sendFile(path.join(__dirname, '/pages/chabot.html'));
+});
+
 app.get('/about/profile', (req, res) => {
   res.sendFile(path.join(__dirname, '/pages/about.html'));
 });
