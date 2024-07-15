@@ -207,7 +207,7 @@ app.get('/', (req, res) => {
    app.get('/portofolio2', (req, res) => {
  app.use(express.static(path.join(__dirname, "styles")));
  res.sendFile(path.join(__dirname, '/pages/portofolio2.html'));
-});html
+});
 
 res.sendFile(path.join(__dirname, '/pages/home.html'));
 });
