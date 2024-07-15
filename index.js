@@ -204,6 +204,11 @@ app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, '/pages/dashboard.html'));
 });
 
+   app.get('/portofolio2', (req, res) => {
+ app.use(express.static(path.join(__dirname, "styles")));
+ res.sendFile(path.join(__dirname, '/pages/portofolio.html'));
+});
+
 res.sendFile(path.join(__dirname, '/pages/home.html'));
 });
 
