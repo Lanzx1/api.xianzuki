@@ -223,7 +223,11 @@ app.get('/about/profile', (req, res) => {
   res.sendFile(path.join(__dirname, '/pages/about.html'));
 });
 
-app.get('/portofolio', (req, res) => {
+app.get('/portofolio1', (req, res) => {
+  res.sendFile(path.join(__dirname, '/pages/portofolio1.html'));
+});
+
+app.get('/portofolio2', (req, res) => {
   res.sendFile(path.join(__dirname, '/pages/portofolio.html'));
 });
 
