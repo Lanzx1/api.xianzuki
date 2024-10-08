@@ -1,355 +1,354 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard Xinz</title>
-    <style>
-        body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    transition: background-color 0.3s, color 0.3s;
-    background-color: #ffffff; /* Add this line */
-    background-size: cover;
-    background-position: center;
-    background-attachment: fixed;
-}
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <meta name="description" content="" />
+  <meta name="author" content="RRuLL" />
+  <base href="https://rezex-apis.vercel.app/" />
+  <link href="https://telegra.ph/file/9045405bb6f469853f303.jpg" rel="icon" />
+  <title>Rezex APIs</title>
+  <link href="https://indrijunanda.github.io/RuangAdmin/vendor/fontawesome-free/css/all.min.css" rel="stylesheet"
+    type="text/css" />
+  <link href="https://indrijunanda.github.io/RuangAdmin/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet"
+    type="text/css" />
+  <link href="https://indrijunanda.github.io/RuangAdmin/css/ruang-admin.min.css" rel="stylesheet" />
+  <style>
+    .dark-mode {
+      background-color: #343a40;
+    }
 
-        .navbar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background-color: #333;
-            padding: 10px;
-            color: white;
-        }
+    .dark-mode .chat-container {
+      background-color: #454d55;
+    }
 
-        .menu-icon, .profile-icon, .night-mode-icon {
-            cursor: pointer;
-            font-size: 20px;
-        }
+    .card-body {
+      margin-bottom: 20px;
+    }
 
-        .actions {
-            display: flex;
-            align-items: center;
-        }
+    .contact {
+      margin-top: 20px;
+    }
 
-        .dropdown {
-            position: relative;
-            display: inline-block;
-        }
+    .chat-container {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      width: 300px;
+      max-height: 400px;
+      background-color: #fff;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      display: none; /* Initially hidden */
+    }
 
-        .dropdown-content {
-            display: none;
-            position: absolute;
-            background-color: #f9f9f9;
-            min-width: 200px;
-            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-            z-index: 1;
-        }
+    .chat-header {
+      background-color: #343a40;
+      color: #fff;
+      padding: 10px;
+      text-align: center;
+    }
 
-        .dropdown-content a {
-            color: black;
-            padding: 12px 16px;
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-        }
+    .chat-messages {
+      flex-grow: 1;
+      padding: 10px;
+      overflow-y: auto;
+    }
 
-        .dropdown-content a:hover {
-            background-color: #f1f1f1;
-        }
+    .chat-input {
+      display: flex;
+      border-top: 1px solid #ddd;
+    }
 
-        .dropdown:hover .dropdown-content {
-            display: block;
-        }
+    .chat-input input {
+      flex-grow: 1;
+      border: none;
+      padding: 10px;
+    }
 
-        .content {
-            padding: 20px;
-        }
+    .chat-input button {
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+      padding: 10px;
+    }
 
-        .footer {
-            text-align: center;
-            padding: 10px;
-            background-color: #333;
-            color: white;
-            position: fixed;
-            width: 100%;
-            bottom: 0;
-        }
+    .message {
+      margin-bottom: 10px;
+      padding: 5px;
+      background-color: transparent; /* Remove bubble background */
+      border-radius: 0; /* Remove border radius */
+    }
 
-        .dark-mode {
-            background-color: #121212;
-            color: white;
-        }
-
-        .profile-icon {
-            width: 30px;
-            height: 30px;
-            border-radius: 50%;
-            cursor: pointer;
-            margin-left: 10px;
-        }
-
-        .icon {
-            margin-right: 10px;
-        }
-
-        .sidebar {
-            width: 250px;
-            height: 100%;
-            position: fixed;
-            left: -250px; /* Start off-screen */
-            top: 0;
-            background-color: #333;
-            overflow-x: hidden;
-            padding-top: 20px;
-            z-index: 1;
-            color: white;
-            transition: left 0.3s ease; /* Slide animation */
-        }
-
-        .sidebar a {
-            padding: 10px 15px;
-            text-decoration: none;
-            font-size: 18px;
-            color: white;
-            display: block;
-            transition: 0.3s;
-        }
-
-        .sidebar a:hover {
-            background-color: #575757;
-        }
-
-        .close-btn {
-            position: absolute;
-            top: 10px;
-            right: 25px;
-            font-size: 36px;
-            cursor: pointer;
-        }
-
-        .open-sidebar {
-            cursor: pointer;
-            font-size: 20px;
-        }
-
-        .sidebar-header {
-            font-size: 24px;
-            text-align: center;
-            margin-bottom: 20px;
-        }
-
-        .sidebar-divider {
-            border-bottom: 1px solid #575757;
-            margin: 0 15px;
-            padding-bottom: 10px;
-        }
-
-        .hidden {
-            display: none;
-        }
-
-        .feature-block {
-            margin-top: 20px;
-            background-color: #f9f9f9;
-            padding: 15px;
-            border-radius: 5px;
-        }
-
-        .feature-title {
-            font-weight: bold;
-            font-size: 18px;
-            margin-bottom: 10px;
-        }
-
-        .feature-list {
-            margin-top: 10px;
-            font-size: 16px;
-        }
-
-        .feature-list-item {
-            margin-bottom: 5px;
-        }
-
-        .block-marker {
-            text-align: center;
-            font-weight: bold;
-            font-size: 24px;
-            margin-bottom: 10px;
-        }
-
-        .feature-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20
-}
-        .feature-table th, .feature-table td {
-            border: 1px solid #ddd;
-            padding: 8px;
-            text-align: center;
-        }
-
-        .feature-table th {
-            background-color: #f2f2f2;
-        }
-
-        .feature-table tr:nth-child(even) {
-            background-color: #f9f9f9;
-        }
-
-        .get-link {
-            text-decoration: none;
-            color: blue;
-            cursor: pointer;
-        }
-    </style>
+    .chat-toggle {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background-color: #007bff;
+      color: #fff;
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+  </style>
 </head>
-<body>
-    <div class="navbar">
-        <div class="open-sidebar" onclick="toggleSidebar(true)">☰</div>
-        <div class="actions">
-            <div class="night-mode-icon" onclick="toggleNightMode()">🌙</div>
-            <div class="dropdown">
-                <img src="https://telegra.ph/file/9045405bb6f469853f303.jpg" alt="Profile" class="profile-icon">
-                <div class="dropdown-content">
-                    <a href="https://port-topaz-alpha.vercel.app/" class="logo">Portofolio</a>
-                    <a href="https://ai-firefly.vercel.app/" class="logo">Chatbot</a>
-                    <a href="/bot" class="logo">Bot</a>
+
+<body id="page-top">
+  <div id="wrapper">
+    <ul class="navbar-nav sidebar bg-gray-900 accordion bg-light" id="accordionSidebar"
+      style="color: rgb(8, 247, 255);">
+      <a class="sidebar-brand d-flex align-items-center justify-content-center bg-gray-900"
+        style="color: rgb(7, 255, 201);">
+        <span style="color: rgb(255, 255, 255);">XinZ APIS 2.0</span>
+      </a>
+      <hr class="sidebar-divider my-0" />
+      <li class="nav-item active">
+        <a class="nav-link">
+          <i class="fas fa-fw fa-code"></i>
+          <span>Documentation</span></a>
+      </li>
+      <hr class="sidebar-divider" />
+      <div class="sidebar-heading">Features</div>
+            <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseSearch" aria-expanded="true"
+          aria-controls="collapseSearch">
+          <i class="fas fa-fw fa-search"></i>
+          <span>Artificial Intelligence</span>
+        </a>
+        <div id="collapseSearch" class="collapse" aria-labelledby="headingSearch" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
+            <h6 class="collapse-header">AI - Features</h6>
+            <a class="collapse-item" href="/api/ragbot?message=hello">Ragbot</a>
+            <a class="collapse-item" href="/api/gpt?message=hai" class="btn">gpt</a>
+            <a class="collapse-item" href="/api/degreeguru?message=hai">Degreeguru</a>
+            <a class="collapse-item" href="/api/pinecone?message=hai">pinecone</a>
+            <a class="collapse-item" href="/api/openai?text=hai">Coming Soon</a>
+          </div>
+        </div>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseGames" aria-expanded="true" aria-controls="collapseForm">
+          <i class="app-menu__icon fa fa-laptop"></i>
+          <span>Downloader</span>
+        </a>
+        <div id="collapseGames" class="collapse" aria-labelledby="headingForm" data-parent="#accordionSidebar">
+          <div class="py-2 collapse-inner rounded">
+            <h6 class="collapse-header">Downloader</h6>
+            <a class="collapse-item" href="/api/tiktok?url=https://vt.tiktok.com/ZSYj9uVGS/">Tiktok</a>
+            <a class="collapse-item" href="/api/igdl?url=YOUR_URL">Instagram</a>
+            <a class="collapse-item" href="/api/spotify?url=YOUR_URL">Spotify</a>
+          </div>
+        </div>
+              </li>
+       <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePhotooxy"
+          aria-expanded="true" aria-controls="collapsePhotooxy">
+          <i class="fa fa-whatsapp" aria-hidden="true"></i>
+          <span>More</span>
+        </a>
+        <div id="collapsePhotooxy" class="collapse" aria-labelledby="headingPhotooxy" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
+            <h6 class="collapse-header">XinZ</h6>
+            <a class="collapse-item" href="https://ai-firefly.vercel.app/">Firefly - Chatbot</a>
+          </div>
+        </div>
+      </li>
+      <hr class="sidebar-divider" />
+      <div class="version" id="version-ruangadmin"></div>
+    </ul>
+
+    <div id="content-wrapper" class="d-flex flex-column">
+      <div id="content">
+        <nav class="navbar navbar-expand navbar-light bg-navbar topbar mb-4 static-top bg-gray-900">
+          <button id="sidebarToggleTop" class="btn btn-link rounded-circle mr-3">
+            <i class="fa fa-bars"></i>
+          </button>
+          <ul class="navbar-nav ml-auto">
+            <div class="topbar-divider d-none d-sm-block"></div>
+            <li class="nav-item dropdown no-arrow">
+              <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown"
+                aria-haspopup="true" aria-expanded="false">
+                <img class="img-profile rounded-circle"
+                  src="https://telegra.ph/file/9045405bb6f469853f303.jpg"
+                  style="max-width: 100px" />
+                <span class="ml-2 d-none d-lg-inline text-white small"></span>
+              </a>
+            </li>
+          </ul>
+        </nav>
+
+        <!-- Element untuk menampilkan waktu, tanggal, hari, dan status baterai -->
+        <div class="col-xxl-4 col-xl-12 mb-4">
+          <div class="card">
+            <div class="card-body">
+              <strong><i class="bi bi-people-fill"></i> Time Date</strong>
+              <div class="row">
+                <div class="col-auto">
+                  <div id="time-date"></div>
+                  <strong>Informasi Waktu dan Baterai:</strong>
+                  <div id="battery-status"></div>
                 </div>
+              </div>
             </div>
+          </div>
         </div>
-    </div>
-    <div class="sidebar" id="sidebar">
-        <a href="javascript:void(0)" class="close-btn" onclick="toggleSidebar(false)">&times;</a>
-        <div class="sidebar-header">Ventures</div>
- Featurediv class="sidebar-divider"></div>
-        <a href="javascript:void(0)" onclick="showContent('content')"><span class="icon"><i class="fas fa-home"></i></span> Beranda</a>
-<span class="icon"><i class="fas fa-calendar-alt"></i></span> Catatan Perubahan</a>
-        <a href="https://ai-firefly.vercel.app/"><span class="icon"><i class="fas fa-robot"></i></span> Chatbot</a>
-        <div class="sidebar-divider"></div>
-        <a href="javascript:void(0)" onclick="showContent('anime')"><span class="icon"><i class="fas fa-tv"></i></span> Anime</a>
-        <a href="javascript:void(0)" onclick="showContent('ai')"><span class="icon"><i class="fas fa-brain"></i></span> Fitur AI</a>
-    </div>
-    <div class="content" id="content">
-<h1 id="typed-text"></h1>
-        <p>This is your dashboard content. Select options from the menu to navigate.</p>
-    </div>
-    <div class="content hidden" id="restapi">
-        <div class="feature-block">
-            <div class="block-marker">——————</div>
-            <div class="feature-title">Xinz Features</div>
-            <table class="feature-table">
-                <thead>
-                    <tr>
-                        <th>No</th>
-                        <th>Nama Fitur</th>
-                        <th>exec</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>GptAi</td>
-                        <td><a href="https://contoh-url.com/gptai" class="get-link">Get</a></td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>Degbor</td>
-                        <td><a href="https://contoh-url.com/degbor" class="get-link">Get</a></td>
-                    </tr>
-                </tbody>
-            </table>
+
+        <div class="col-xxl-4 col-xl-12 mb-4">
+          <div class="card">
+            <div class="card-body">
+              <section class="container contact" id="contact">
+                <div class="contact-container">
+                  <div class="main-title">
+                    <h2><span></span><span class="bg-text"></span></h2>
+                  </div>
+                  <div class="contact-content-con">
+                    <div class="left-contact">
+                      <h4>Contact Me</h4>
+                      <p>
+                        If you have any questions or other important
+                                              matters, you can contact me directly at the address listed. 
+                        Don't hesitate to contact me!.
+                      </p>
+                      <p>Location: Jawa Barat, Bogor</p>
+                      <p>Email: takachixinz1@gmail.com</p>
+                      <p>Mobile Number: 6281319810300 </p>
+                      <section id="contact">
+                        <h2></h2>
+                        <div class="project">
+                          <h3></h3>
+                          <p>Silahkan hubungi saya jika anda butuh bantuan/request/report bug</p>
+                          <a href="https://wa.me/message/MSEI5AK4XFFTC1" class="btn btn-primary">Chat Me</a>
+                        </div>
+                      </section>
+                    </div>
+                  </div>
+                </div>
+              </section>
+            </div>
+          </div>
         </div>
-    </div>
-    <div class="content hidden" id="ai">
-        <div class="feature-block">
-            <div class="block-marker">——————</div>
-            <div class="feature-title">AI Features</div>
-            <table class="feature-table">
-                <thead>
-                    <tr>
-                        <th>No</th>
-                        <th>Nama Fitur</th>
-                        <th>exec</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>AI Fitur 1</td>
-                        <td><a href="https://contoh-url.com/aifitur1" class="get-link">Get</a></td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>AI Fitur 2</td>
-                        <td><a href="https://contoh-url.com/aifitur2" class="get-link">Get</a></td>
-                    </tr>
-                </tbody>
-            </table>
+
+        <div class="col-xxl-4 col-xl-12 mb-4">
+          <div class="card">
+            <div class="card-body">
+              <strong><i class="bi bi-people-fill"></i> Thanks To:</strong>
+              <div class="row">
+                <div class="col-auto">
+                  <ul>
+                    <li>Allah SWT.</li>
+                    <li>Parents</li>
+                    <li>Bang Putu.</li>
+                    <li>Bang Aces.</li>
+                    <li>Xinz (me).</li>
+                    <li>Ryx. (partner)</li>
+                    <li>ExpressJS, Passport</li>
+                    <li>The person who helped share this API</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <span> <br> </span>
+            <footer class="sticky-footer bg-white">
+              <div class="container my-auto">
+                <div class="copyright text-center my-auto">
+                  <span>copyright &copy;
+                    <script>
+                      document.write(new Date().getFullYear());
+                    </script>
+                    <b><a href="https://github.com/xinz21" target="_blank">XinZ Apis</a></b>
+                  </span>
+                </div>
+              </div>
+            </footer>
+          </div>
         </div>
+      </div>
     </div>
-    <div class="footer">
-        &copy; <span id="year"></span> Company, Copyright 2024
+
+    <!-- Chat Toggle -->
+    <div class="chat-toggle" onclick="toggleChat()">
+      <i class="fas fa-comments"></i>
     </div>
+    <div class="chat-container" id="chatContainer">
+      <div class="chat-header">Chat</div>
+      <div class="chat-messages" id="chatMessages"></div>
+      <div class="chat-input">
+        <input type="text" id="chatInput" placeholder="Type your message..." />
+        <button onclick="sendMessage()">Send</button>
+      </div>
+    </div>
+
+    <a class="scroll-to-top rounded" href="#page-top">
+      <i class="fas fa-angle-up"></i>
+    </a>
+    <script src="https://indrijunanda.github.io/RuangAdmin/vendor/jquery/jquery.min.js"></script>
+    <script src="https://indrijunanda.github.io/RuangAdmin/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="https://indrijunanda.github.io/RuangAdmin/vendor/jquery-easing/jquery.easing.min.js"></script>
+    <script src="https://indrijunanda.github.io/RuangAdmin/js/ruang-admin.min.js"></script>
 
     <script>
-    	const typedTextSpan = document.getElementById("typed-text"),
-      textArray = ["Welcome to the Dashboard", "Selamat Datang Di Dashboard"],
-      typingDelay = 200,
-      erasingDelay = 100,
-      newTextDelay = 2000;
+      // Fungsi untuk menampilkan waktu dan tanggal
+      function updateTimeAndDate() {
+        const now = new Date();
+        const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+        const timeString = now.toLocaleTimeString();
+        const dateString = now.toLocaleDateString(undefined, options);
 
-let textArrayIndex = 0,
-    charIndex = 0;
+        document.getElementById('time-date').textContent = `Waktu: ${timeString}, Tanggal: ${dateString}`;
+      }
 
-function type() {
-  charIndex < textArray[textArrayIndex].length ? 
-    (typedTextSpan.textContent += textArray[textArrayIndex].charAt(charIndex), 
-     charIndex++, 
-     setTimeout(type, typingDelay)) : 
-    setTimeout(erase, erasingDelay)
-}
-
-function erase() {
-  charIndex > 0 ? 
-    (typedTextSpan.textContent = textArray[textArrayIndex].substring(0, charIndex - 1), 
-     charIndex--, 
-     setTimeout(erase, erasingDelay)) : 
-    (textArrayIndex++, 
-     textArrayIndex >= textArray.length && (textArrayIndex = 0), 
-     setTimeout(type, newTextDelay))
-}
-
-document.addEventListener("DOMContentLoaded", function() {
-  setTimeout(type, newTextDelay)
-});
-
-        function toggleNightMode() {
-            document.body.classList.toggle('dark-mode');
+      // Fungsi untuk mendapatkan status baterai
+      function updateBatteryStatus() {
+        if (navigator.getBattery) {
+          navigator.getBattery().then(function(battery) {
+            const level = Math.round(battery.level * 100);
+            const charging = battery.charging ? "Sedang mengisi daya" : "Tidak mengisi daya";
+            document.getElementById('battery-status').textContent = `Baterai: ${level}% (${charging})`;
+          });
+        } else {
+          document.getElementById('battery-status').textContent = "Status baterai tidak didukung.";
         }
+      }
 
-        function toggleSidebar(open) {
-            const sidebar = document.getElementById('sidebar');
-            if (open) {
-                sidebar.style.left = '0';
-            } else {
-                sidebar.style.left = '-250px';
-            }
+      // Fungsi untuk mengirim pesan di chat
+            function sendMessage() {
+        const input = document.getElementById('chatInput');
+        const message = input.value.trim();
+        if (message) {
+          const chatMessages = document.getElementById('chatMessages');
+          const messageElement = document.createElement('div');
+          messageElement.className = 'message';
+          messageElement.textContent = message;
+          chatMessages.appendChild(messageElement);
+          input.value = '';
+          chatMessages.scrollTop = chatMessages.scrollHeight;
         }
+      }
 
-        function showContent(section) {
-            document.querySelectorAll('.content').forEach(content => {
-                content.classList.add('hidden');
-            });
-            document.getElementById(section).classList.remove('hidden');
-            toggleSidebar(false);
+      // Fungsi untuk membuka/menutup chat
+      function toggleChat() {
+        const chatContainer = document.getElementById('chatContainer');
+        if (chatContainer.style.display === 'none' || chatContainer.style.display === '') {
+          chatContainer.style.display = 'flex';
+        } else {
+          chatContainer.style.display = 'none';
         }
+      }
 
-        document.getElementById('year').textContent = new Date().getFullYear();
-                    </script>
+      // Memperbarui waktu dan status baterai setiap detik
+      setInterval(updateTimeAndDate, 1000);
+      updateBatteryStatus();
+    </script>
+  </div>
 </body>
-                            </html>
-    
+</html>
