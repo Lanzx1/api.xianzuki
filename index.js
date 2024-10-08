@@ -214,12 +214,13 @@ res.sendFile(path.join(__dirname, '/pages/home.html'));
 
 /*app.get('/login/login', (req, res) => {
   res.sendFile(path.join(__dirname, '/pages/login.html'));
-});
+});*/
 
-app.get('/sewabot', (req, res) => {
+app.get('/bot', (req, res) => {
   res.sendFile(path.join(__dirname, '/pages/bot.html'));
 });
 
+/*
 app.get('/chabot', (req, res) => {
   res.sendFile(path.join(__dirname, '/pages/chabot.html'));
 });
