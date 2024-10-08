@@ -200,19 +200,19 @@ async function igdl(url) {
 
 app.get('/', (req, res) => {
 
-  app.get('/dashboard', (req, res) => {
+ /* app.get('/dashboard', (req, res) => {
   res.sendFile(path.join(__dirname, '/pages/dashboard.html'));
 });
 
    app.get('/portofolio2', (req, res) => {
  app.use("/styles",express.static(path.join(__dirname, "styles")));
  res.sendFile(path.join(__dirname, '/pages/portofolio2.html'));
-});
+});*/
 
 res.sendFile(path.join(__dirname, '/pages/home.html'));
 });
 
-app.get('/login/login', (req, res) => {
+/*app.get('/login/login', (req, res) => {
   res.sendFile(path.join(__dirname, '/pages/login.html'));
 });
 
@@ -234,7 +234,7 @@ app.get('/portofolio1', (req, res) => {
 
 app.get('/portofolio2', (req, res) => {
   res.sendFile(path.join(__dirname, '/pages/portofolio.html'));
-});
+});*/
 
 app.get('/api/ai', (req, res) => {
   res.sendFile(path.join(__dirname, '/pages/docs/ai.html'));
